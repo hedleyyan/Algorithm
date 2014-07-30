@@ -1,6 +1,8 @@
 package collection;
 
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 
 public class ResizingArrayRandomQueue<Item> implements RandomQueue<Item> {
@@ -72,7 +74,7 @@ public class ResizingArrayRandomQueue<Item> implements RandomQueue<Item> {
 
 	@Override
 	public Item sample() {
-		return null;
+		return items[getRandomIndex()];
 	}
 
 	@Override
@@ -84,10 +86,26 @@ public class ResizingArrayRandomQueue<Item> implements RandomQueue<Item> {
 	}
 	
 	public static void main(String[] args) {
-		String str = "1 2 3 5 - - - 6 7 - - 9 3 1 - - - ";
-		testRandomQueue(new ResizingArrayRandomQueue<Integer>(), str);
+//		String str = "1 2 3 5 - - - 6 7 - - 9 3 1 - - - ";
+//		testRandomQueue(new ResizingArrayRandomQueue<Integer>(), str);
+//		
+		testSampleRandomQueue();
 	}
 	
+	private static void testSampleRandomQueue() {
+		RandomQueue<Integer> q = new ResizingArrayRandomQueue<Integer>();
+		Map<Integer, Integer> m = new HashMap<Integer, Integer>();
+		for (int i = 0; i < 10; i++) {
+			q.enqueue(i);
+		}
+		for (int i = 0; i < 1000; i++) {
+			int key = q.sample();
+			int num = m.containsKey(key) ? m.get(key) : 0;
+			m.put(key, num + 1);
+		}
+		System.out.println(m);
+	}
+
 	private static void testRandomQueue(RandomQueue<Integer> q, String str) {
         String[] strs = str.split("\\s+");
         for (String subStr : strs) {
