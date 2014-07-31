@@ -114,8 +114,8 @@ public class LinkedListDeque<Item> implements Deque<Item>, Iterable<Item>{
     
     public static void main(String[] args) {
         String str = "l1 l2 r3 r4 -l -l -r r5 l6 r7 -r -l ";
-        testDeque(new LinkedListDeque<Integer>(), str);
-//        testDeque(new ResizingArrayDeque<Integer>(), str);
+//        testDeque(new LinkedListDeque<Integer>(), str);
+        testDeque(new ResizingArrayDeque<Integer>(), str);
     }
     
     private static void testDeque(Deque<Integer> q, String str) {
