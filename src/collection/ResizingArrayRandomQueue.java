@@ -86,9 +86,9 @@ public class ResizingArrayRandomQueue<Item> implements RandomQueue<Item> {
 	}
 	
 	public static void main(String[] args) {
-//		String str = "1 2 3 5 - - - 6 7 - - 9 3 1 - - - ";
-//		testRandomQueue(new ResizingArrayRandomQueue<Integer>(), str);
-//		
+		String str = "1 2 3 5 - - - 6 7 - - 9 3 1 - - - ";
+		testRandomQueue(new ResizingArrayRandomQueue<Integer>(), str);
+		
 		testSampleRandomQueue();
 	}
 	
