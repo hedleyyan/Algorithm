@@ -26,5 +26,10 @@ public class StackAdapter<Item> implements Stack<Item> {
     public Item peek() {
         return stack.peek();
     }
+    
+    @Override
+    public int size() {
+        return stack.size();
+    }
 
 }

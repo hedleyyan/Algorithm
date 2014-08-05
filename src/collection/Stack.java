@@ -5,4 +5,5 @@ public interface Stack<Item> {
     Item peek();
     void push(Item item);
     boolean isEmpty();
+    int size();
 }   
