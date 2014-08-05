@@ -7,7 +7,7 @@ import util.IOUtil;
 
 public class _1_3_44_Buffer {
 
-    class Buffer {
+    private static class Buffer {
         private static final String DEFAULT_CHARSET = "GBK";
 
         private Stack<Character> left;
@@ -76,11 +76,11 @@ public class _1_3_44_Buffer {
 
     public static void main(String[] args) {
         //        "D:\\SVN\\Docs\\Record\\版本延期发布问题.txt"
-        _1_3_44_Buffer outer = new _1_3_44_Buffer();
-        Buffer b = outer.new Buffer("D:\\SVN\\Docs\\Record\\版本延期发布问题.txt");
+        Buffer b = new Buffer("D:\\SVN\\Docs\\Record\\版本延期发布问题.txt");
         b.right(10);
         b.insert('h');
         b.delete();
+        b.left(2);
         b.flush();
     }
 }
