@@ -12,7 +12,6 @@ import java.util.Map;
 import edu.princeton.cs.introcs.In;
 import edu.princeton.cs.introcs.StdDraw;
 import edu.princeton.cs.introcs.StdOut;
-import edu.princeton.cs.introcs.Stopwatch;
 
 public abstract class UnionFind {
 
@@ -156,8 +155,8 @@ public abstract class UnionFind {
     }
     
     public static void main(String[] args) throws Exception {
-        testMediumDraw(WeightedQuickUnion.class);
-        amortizedCostPlots(QuickFind.class);
+//        testMediumDraw(WeightedQuickUnion.class);
+        amortizedCostPlots(WeightedQuickUnionByHeight.class);
     }
     
 }
