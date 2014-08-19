@@ -13,7 +13,7 @@ import edu.princeton.cs.introcs.In;
 import edu.princeton.cs.introcs.StdDraw;
 import edu.princeton.cs.introcs.StdOut;
 
-public abstract class UnionFind {
+public abstract class AbstractUnionFind {
 
     protected int count;
 
@@ -22,7 +22,7 @@ public abstract class UnionFind {
     // the number of array access
     protected int cost;
 
-    public UnionFind(int N) {
+    public AbstractUnionFind(int N) {
         this.count = N;
         this.id = new int[N];
         for (int i = 0; i < N; i++) {
@@ -45,7 +45,7 @@ public abstract class UnionFind {
     /**
      * 测试中等大小输入数据（625节点，900边）图形结果. 
      */
-    public static void testMediumDraw(Class <? extends UnionFind> c) throws Exception {
+    public static void testMediumDraw(Class <? extends AbstractUnionFind> c) throws Exception {
         In in = new In(new URL("http://algs4.cs.princeton.edu/15uf/mediumUF.txt"));
 //        In in = new In(new URL("http://algs4.cs.princeton.edu/15uf/largeUF.txt"));
 
@@ -57,8 +57,8 @@ public abstract class UnionFind {
         StdDraw.setYscale(0, root);
         
         // 反射调用带参数的构造型
-        Constructor<? extends UnionFind> cons = c.getDeclaredConstructor(int.class);
-        UnionFind uf = cons.newInstance(N);
+        Constructor<? extends AbstractUnionFind> cons = c.getDeclaredConstructor(int.class);
+        AbstractUnionFind uf = cons.newInstance(N);
         
         StdDraw.setPenRadius(0.01);
         for (int i=0; i<root; i++) {
@@ -94,13 +94,13 @@ public abstract class UnionFind {
     /**
      * 均摊分析. 
      */
-    private static void amortizedCostPlots(Class <? extends UnionFind> c) throws Exception {
+    private static void amortizedCostPlots(Class <? extends AbstractUnionFind> c) throws Exception {
         In in = new In(new File("data/mediumUF.txt"));
         int N = in.readInt();
         
         // 反射调用带参数的构造型
-        Constructor<? extends UnionFind> cons = c.getDeclaredConstructor(int.class);
-        UnionFind uf = cons.newInstance(N);
+        Constructor<? extends AbstractUnionFind> cons = c.getDeclaredConstructor(int.class);
+        AbstractUnionFind uf = cons.newInstance(N);
         
         
         // 存储每次的消耗和平均消耗值

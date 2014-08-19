@@ -1,6 +1,6 @@
 package unionfind;
 
-public class WeightedQuickUnion extends UnionFind {
+public class WeightedQuickUnion extends AbstractUnionFind {
     
     int[] sz; 
     public WeightedQuickUnion(int N) {

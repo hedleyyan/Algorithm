@@ -1,6 +1,6 @@
 package unionfind;
 
-public class QuickUnion extends UnionFind {
+public class QuickUnion extends AbstractUnionFind {
 
     public QuickUnion(int N) {
         super(N);
