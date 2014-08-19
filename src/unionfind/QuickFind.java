@@ -14,7 +14,9 @@ public class QuickFind extends UnionFind {
         if (pID == qID) return;
         
         for (int i=0; i<id.length; i++) {
+            cost ++;
             if (id[i] == pID) { 
+                cost ++;
                 id[i] = qID;
             }
         }
@@ -23,6 +25,7 @@ public class QuickFind extends UnionFind {
 
     @Override
     public int find(int p) {
+        cost ++;
         return id[p];
     }
 

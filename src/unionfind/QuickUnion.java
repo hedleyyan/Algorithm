@@ -13,13 +13,18 @@ public class QuickUnion extends UnionFind {
         
         if (pRoot == qRoot) return;
         
+        cost ++;
         id[pRoot] = qRoot;
         count --;
     }
 
     @Override
     int find(int p) {
-        while (id[p] != p) p = id[p];
+        while (id[p] != p) {
+            p = id[p];
+            cost += 2;
+        }
+        cost ++;
         return p;
     }
 

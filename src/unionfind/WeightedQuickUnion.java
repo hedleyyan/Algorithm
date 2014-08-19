@@ -19,11 +19,16 @@ public class WeightedQuickUnion extends UnionFind {
         
         if (pRoot == qRoot) return;
         
+        cost += 2;
         if (sz[pRoot] < sz[qRoot]) {
+            cost ++;
             id[pRoot] = qRoot;
+            cost += 2;
             sz[qRoot] += sz[pRoot];
         } else {
+            cost ++;
             id[qRoot] = pRoot;
+            cost += 2;            
             sz[pRoot] += sz[qRoot];
         }
         count --;
@@ -31,7 +36,11 @@ public class WeightedQuickUnion extends UnionFind {
 
     @Override
     int find(int p) {
-        while (id[p] != p) p = id[p];
+        while (id[p] != p) {
+            p = id[p];
+            cost += 2;
+        }
+        cost ++;
         return p;
     }
 }
