@@ -1,85 +1,124 @@
+
 package sort;
 
 import java.util.Arrays;
-import java.util.Collections;
+import java.util.List;
 
 public class Sorts {
+
+    // 回合比较次数
     private static int lessCount = 0;
+
+    // 回合交换次数
     private static int exchCount = 0;
-    
-    private static boolean less (Comparable c, Comparable c2) {
+
+    /**
+     * 比较.
+     */
+    private static <T extends Comparable<? super T>> boolean less(T element, T element2) {
         lessCount++;
-        return c.compareTo(c2) < 0;
+        return element.compareTo(element2) < 0;
     }
-    
-    private static void exch (Comparable[] array, int i, int j) {
+
+    /**
+     * 交换.
+     */
+    private static <T extends Comparable<? super T>> void exch(List<T> l, int i, int j) {
         exchCount++;
-        Comparable temp = array[i];
-        array[i] = array[j];
-        array[j] = temp;
+        T temp = l.get(i);
+        l.set(i, l.get(j));
+        l.set(j, temp);
     }
-    
-    private static boolean isSorted(Comparable[] c) {
-        for (int i=1; i<c.length; i++) {
-            if (less(c[i], c[i - 1])) {
+
+    /**
+     * 是否已排序. 
+     */
+    private static <T extends Comparable<? super T>> boolean isSorted(List<? extends T> c) {
+        for (int i = 1; i < c.size(); i++) {
+            if (c.get(i).compareTo(c.get(i - 1)) < 0) {
                 return false;
             }
         }
         return true;
     }
-    
-    private static void show (Comparable[] c) {
-        System.out.println(Arrays.toString(c));
-        System.out.println("Less count: " + lessCount);
-        System.out.println("Exch count: " + exchCount);
-        System.out.println("Is sorted: " + isSorted(c));
-        resetCount();
-    }
-    
+
+
     private static void resetCount() {
         lessCount = 0;
         exchCount = 0;
     }
-    
-    public static void quickSort(Comparable[] c) {
-        
+
+    public static <T extends Comparable<? super T>> void quickSort(List<? extends T> c) {
+
     }
-    
-    public static void mergeSort(Comparable[] c) {
-        
+
+    public static <T extends Comparable<? super T>> void mergeSort(List<? extends T> c) {
+
     }
-    
-    public static void insertionSort(Comparable[] c) {
-        for (int i = 0; i < c.length - 1; i++) {
-            for (int j = i + 1; j > 0; j--) {
-                if (less(c[j], c[j - 1])) {
-                    exch(c, j, j-1);
-                } else {
-                    break;
-                }
+
+    /**
+     * <pre>
+     * 插入排序.（扑克）
+     * 
+     * date: 2014年8月20日
+     * </pre>
+     * @author yandeli
+     * @param l         待排序集合
+     * @param inPro     每轮排序过后的信息处理器
+     */
+    public static <T extends Comparable<? super T>> void insertionSort(List<? extends T> l, InfoProducer inPro) {
+        for (int i = 1; i < l.size(); i++) {
+            for (int j = i; j > 0 && less(l.get(j), l.get(j - 1)); j--) {
+                exch(l, j, j - 1);
             }
         }
     }
-    
-    public static void selectionSort(Comparable[] c) {
-        for (int i = 0; i < c.length - 1; i++) {
+
+    /**
+     * <pre>
+     * 选择排序.（轮选）
+     * 
+     * date: 2014年8月20日
+     * </pre>
+     * @author yandeli
+     * @param l         待排序集合
+     * @param inPro     每轮排序过后的信息处理器
+     */
+    public static <T extends Comparable<? super T>> void selectionSort(List<? extends T> l, InfoProducer inPro) {
+        
+        // 排序之前输出一下信息.
+        inPro.show(l);
+        
+        for (int i = 0; i < l.size(); i++) {
             int minIndex = i;
-            for (int j = i + 1; j < c.length; j++) {
-                if (less(c[j], c[minIndex])) {
+            for (int j = i + 1; j < l.size(); j++) {
+                if (less(l.get(j), l.get(minIndex))) {
                     minIndex = j;
                 }
             }
+            exch(l, i, minIndex);
             
-            exch(c, i, minIndex);
+            // 每轮排序后输出一下信息.
+            inPro.show(l);
         }
     }
-    
+
     public static void main(String[] args) {
-        Comparable[] c = {1, 5, 5, 7, 8, 23, 2, 3, 5, 3, 6, 7, 0};
-        show(c);
-        insertionSort(c);
-        show(c);
-        selectionSort(c);
-        show(c);
+        List<Integer> l = Arrays.asList(1, 3, 2, 4);
+        selectionSort(l, new ConsoleInfo());
+        
+        //        insertionSort(l, new ConsoleInfo());
     }
+
+    private static class ConsoleInfo implements InfoProducer {
+        @Override
+        public <T extends Comparable<? super T>> void show(List<? extends T> l) {
+            System.out.println(l);
+            System.out.println("Less count: " + lessCount);
+            System.out.println("Exch count: " + exchCount);
+            System.out.println("Is sorted: " + isSorted(l));
+        }
+
+    }
+
 }
