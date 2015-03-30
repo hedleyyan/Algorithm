@@ -108,6 +108,24 @@ public class Sorts {
         selectionSort(l, new ConsoleInfo());
         
         //        insertionSort(l, new ConsoleInfo());
+        
+        
+        int i = Integer.MIN_VALUE;
+        System.out.println(i == -i);
+        
+        float f = (1 << 23) - 1;
+        
+        System.out.println(f);
+        System.out.println(f + 1);
+        System.out.println(f + 2);
+        System.out.println((f + 1) == (f + 1));
+        
+        
+        System.out.println(Integer.valueOf("10010111",2).toString());
+        System.out.println(Integer.valueOf("00110001011001111001100",2).toString());
+        System.out.println("00110001011001111001100".length());
+        
+        
     }
 
     private static class ConsoleInfo implements InfoProducer {
