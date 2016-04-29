@@ -5,6 +5,7 @@ import java.text.DecimalFormat;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class Test implements Cloneable{
     
@@ -70,6 +71,7 @@ public class Test implements Cloneable{
         int[] types = new int[]{183,21,178,172,166,163,159,180,149,137,128,132,121,123,122,13,117,107,102,51,95};
         Arrays.sort(types);
         System.out.println(Arrays.binarySearch(types, 13)); 
+        
     }
     
     
