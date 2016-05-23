@@ -1,0 +1,5 @@
+Integer a = new Integer(3);
+Integer b = new Integer(3);
+return a == b;
+
+(boolean) false
