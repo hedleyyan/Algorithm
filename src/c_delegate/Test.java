@@ -72,6 +72,9 @@ public class Test implements Cloneable{
         Arrays.sort(types);
         System.out.println(Arrays.binarySearch(types, 13)); 
         
+        Integer a = 128;
+        Integer b = 128;
+        System.out.println(a == b);
     }
     
     
